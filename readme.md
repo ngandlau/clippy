@@ -1,7 +1,5 @@
 ## Installation
 
-Install
-
 Create a virtual environment (venv):
 
 ```console
