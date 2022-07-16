@@ -1,7 +1,5 @@
 from __future__ import annotations
-
-import math
-
+from src.weapon import Weapon
 
 class Clippy():
     def __init__(self):

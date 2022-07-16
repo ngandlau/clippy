@@ -1,4 +1,5 @@
 import src.clippy as clippy
+import src.weapon as weapon
 
 def test_clippy_can_greet():
     clpy = clippy.Clippy()
@@ -11,6 +12,8 @@ def test_clippy_can_farewell():
 def test_clippy_can_attack():
     gormsen = clippy.Clippy()
     gandlau = clippy.Clippy()
+    sword = weapon.Sword()
+    gormsen.equip_weapon(weapon=sword)
     gandlau_life_before = gandlau.life
     gormsen.attack(gandlau)
     assert gandlau.life < gandlau_life_before
