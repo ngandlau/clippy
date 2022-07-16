@@ -1,4 +1,8 @@
-import clippy
+import src.clippy as clyppy
 
-def test_add():
-    assert clippy.add(5, 5) == 10
+def clippy_can_greet():
+    Clippy(ConsoleMessageDeliverer)
+    assert clyppy.add(5, 5) == 10
+
+
+
