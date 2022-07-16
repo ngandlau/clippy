@@ -22,13 +22,12 @@ class TerminalReporter(Reporter):
         print(msg)
 
     def report_action(self, player1, player2, action):
-        pass
-        # if Action.ATTACK == action:
-        #     print(f'{player1.name} attacked {player2.name} with a {player1.weapon.get_name()}')
-        # elif Action.DRAW == action:
-        #     print(f'{player1.name} has drawn a new weapon: {player1.weapon.get_name()}')
-        # else:
-        #     print(f'Wrong Action')
+        if Action.ATTACK == action:
+            print(f'{player1.name} attacked {player2.name} with a {player1.weapon.get_name()}')
+        elif Action.DRAW == action:
+            print(f'{player1.name} has drawn a new weapon: {player1.weapon.get_name()}')
+        else:
+            print(f'Wrong Action')
 
 
 
