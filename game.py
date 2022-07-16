@@ -4,6 +4,7 @@ from main.src.action import Action
 from main.src.clippy import Clippy
 from main.src.gamestate import Gamestate
 from main.src.inputprocessor import InputProcessor, TerminalInputProcessor
+from main.src.lootbox import Lootbox
 from main.src.out.reporter import Reporter, TerminalReporter
 
 
@@ -24,6 +25,12 @@ class Game:
         reporter.report_game_state(state)
         reporter.report_message("Game finished")
 
+    def initialize_gamestate(self, state):
+        state.player, state.bot = Clippy(), Clippy()
+        lootbox_player, lootbox_bot = Lootbox(), Lootbox()
+        state.player.equip_weapon(lootbox_player.draw_random_weapon())
+        state.bot.equip_weapon(lootbox_bot.draw_random_weapon())
+
     def execute_actions(self, action, state):
         if Action.ATTACK == action:
             state.player.attack(state.bot)
@@ -32,9 +39,7 @@ class Game:
         else:
             pass
 
-    def initialize_gamestate(self, state):
-        state.player = Clippy()
-        state.bot = Clippy()
+
 
 if __name__ == '__main__':
     reporter = TerminalReporter()
