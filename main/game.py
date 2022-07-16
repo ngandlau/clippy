@@ -1,26 +1,52 @@
 from dataclasses import dataclass
 
+from src.clippy import Clippy
+
+
 @dataclass
 class Game:
     reporter = None
     state = None
-    processor = None
+    input_processor = None
 
-    def start():
-        self.reporter.report("Hello World")
+    def start(self):
+        self.reporter.report_message("Hello World")
+        self.initialize_gamestate(state)
         while not self.state.is_finished():
-            pass
-            
+            action = self.input_processor.get_user_input()
+            self.execute_actions(action, state)
+            reporter.report_game_state(state)
+        reporter.report_game_state(state)
+        reporter.report_message("Game finished")
+
+    def execute_actions(self, action, state):
+        pass
+
+    def initialize_gamestate(self, state):
+        state.player = Clippy()
+        state.bot = Clippy()
 
 class Reporter:
-    pass
+    def report_game_state(self, state):
+        pass
 
-class Gamestate:
-    pass
+    def report_message(self, param):
+        pass
+
+
+@dataclass
+class Gamestate():
+    player = None
+    bot = None
 
 class InputProcessor:
     pass
 
+class ConsoleReporter:
+    pass
+
+class ConsoleInputProcessor:
+    pass
 
 
 if __name__ == '__main__':
