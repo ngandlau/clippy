@@ -3,8 +3,11 @@ from src.weapon import Weapon
 
 class Clippy():
     def __init__(self):
-        self.weapon = None
+        self.weapon = self.__draw_random_weapon()
         self.life = 10
+
+    def __draw_random_weapon(self):
+
 
     def equip_weapon(self, weapon: Weapon):
         self.weapon = weapon
@@ -16,7 +19,9 @@ class Clippy():
         return "Goodbye, old friend!"
 
     def attack(self, other: Clippy):
-        other.life - self.weapon.get_base_attack()
+        other.life -= self.weapon.get_base_attack()
+        if other.life < 0:
+            other.life = 0
 
 
 if __name__ == '__main__':
