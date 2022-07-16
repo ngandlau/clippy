@@ -7,9 +7,9 @@ class Lootbox:
     occurence_probs: Dict[str, Tuple[Weapon, float]] = None
 
     def __init__(self):
-        self.occurence_probs = self._occurrence_probabilities()
+        self.occurence_probs = self.__calculate_occurrence_probabilities()
 
-    def _occurrence_probabilities(self) -> Dict[str, str]:
+    def __calculate_occurrence_probabilities(self) -> Dict[str, str]:
         """
         For each weapon, calculate its probability of randomly drawing
         that weapon when opening the lootbox.
@@ -36,6 +36,3 @@ class Lootbox:
             probs.append(weapon_prob)
         drawn_weapon = random.choices(weapons, weights=probs)[0]
         return drawn_weapon
-
-if __name__ == '__main__':
-    pass
