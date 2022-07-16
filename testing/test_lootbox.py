@@ -11,7 +11,7 @@ def fuzzy_comparison(ist_probs, soll_probs, threshold=0.1):
     for weapon_name in ist_probs:
         ist_prob = ist_probs[weapon_name]
         soll_prob = soll_probs[weapon_name]
-        diff = ist_prob - soll_prob[1]
+        diff = ist_prob - soll_prob
         if abs(diff) < threshold:
             is_within_threshold.append(True)
         else:
