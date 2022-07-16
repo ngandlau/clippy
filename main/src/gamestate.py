@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from src.clippy import Clippy
+from main.src.clippy import Clippy
 
 
 @dataclass

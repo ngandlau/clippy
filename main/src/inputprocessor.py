@@ -1,4 +1,4 @@
-from src.action import Action
+from main.src.action import Action
 
 
 class InputProcessor:

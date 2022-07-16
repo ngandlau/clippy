@@ -1,6 +1,5 @@
-import src.clippy as clippy
-import src.weapon as weapon
-from src.lootbox import Lootbox
+import main.src.clippy as clippy
+from main.src.lootbox import Lootbox
 
 def test_clippy_can_greet():
     clpy = clippy.Clippy()

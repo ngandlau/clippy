@@ -1,4 +1,4 @@
-import src.lootbox as lootbox
+import main.src.lootbox as lootbox
 
 def test_lootbox_holds_weapons():
     """A lootbox must contain objects of weapons."""

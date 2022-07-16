@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from src.action import Action
-from src.clippy import Clippy
-from src.gamestate import Gamestate
-from src.inputprocessor import InputProcessor, TerminalInputProcessor
-from src.out.reporter import Reporter, TerminalReporter
+from main.src.action import Action
+from main.src.clippy import Clippy
+from main.src.gamestate import Gamestate
+from main.src.inputprocessor import InputProcessor, TerminalInputProcessor
+from main.src.out.reporter import Reporter, TerminalReporter
 
 
 @dataclass

@@ -1,6 +1,6 @@
 import random
-from typing import Dict, List, Tuple
-from src.weapon import Bazooka, Fist, Sword, Weapon
+from typing import Dict, List
+from main.src.weapon import Bazooka, Fist, Sword, Weapon
 
 class Lootbox:
     weapons_in_lootbox: List[Weapon] = [Fist(), Sword(), Bazooka()]

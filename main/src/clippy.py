@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.weapon import Weapon
+from main.src.weapon import Weapon
 
 class Clippy():
     life: float = 10
