@@ -1,58 +1,48 @@
 from dataclasses import dataclass
+
+from src.action import Action
 from src.clippy import Clippy
+from src.gamestate import Gamestate
+from src.inputprocessor import InputProcessor, TerminalInputProcessor
+from src.out.reporter import Reporter, TerminalReporter
+
 
 @dataclass
 class Game:
-    reporter = None
-    state = None
-    input_processor = None
+    reporter: Reporter
+    state: Gamestate
+    input_processor: InputProcessor
 
     def start(self):
         self.reporter.report_message("Hello World")
         self.initialize_gamestate(self.state)
+        reporter.report_game_state(state)
         while not self.state.is_finished:
-            action = self.input_processor.get_user_input()
+            action: Action = self.input_processor.get_user_input("Chose Action [Draw, Attack]: ")
             self.execute_actions(action, state)
             reporter.report_game_state(state)
         reporter.report_game_state(state)
         reporter.report_message("Game finished")
 
     def execute_actions(self, action, state):
-        pass
+        if Action.ATTACK == action:
+            state.player.attack(state.bot)
+        elif Action.DRAW == action:
+            pass
+        else:
+            pass
 
     def initialize_gamestate(self, state):
         state.player = Clippy()
         state.bot = Clippy()
 
-
-@dataclass
-class Gamestate():
-    player = None
-    bot = None
-
-class InputProcessor:
-    pass
-
-class ConsoleReporter:
-    pass
-
-class ConsoleInputProcessor:
-    pass
-
-
 if __name__ == '__main__':
-    reporter = Reporter()
+    reporter = TerminalReporter()
     state = Gamestate()
-    processor = InputProcessor()
+    processor = TerminalInputProcessor()
 
-    game = Game(state, reporter, processor)
+    game = Game(reporter, state, processor)
     game.start()
-
-
-
-
-
-
 
     """
     == Ablauf == 
@@ -71,6 +61,3 @@ if __name__ == '__main__':
     * Player -- ein Clippy
     * Reporter -- GameState veröffentlichen (e.g., in Konsole printen)
     """
-    
-    
-

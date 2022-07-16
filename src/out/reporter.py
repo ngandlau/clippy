@@ -5,6 +5,7 @@ class Reporter:
     def report_message(self, msg):
         pass
 
+
 class TerminalReporter(Reporter):
     def report_game_state(self, state):
         txt = f"""
@@ -12,6 +13,7 @@ class TerminalReporter(Reporter):
             Player: {state.player.life}
             Comptr: {state.bot.life}
         """
+        print(txt)
 
     def report_message(self, msg: str):
         print(msg)
