@@ -16,25 +16,30 @@ class Game:
     input_processor: InputProcessor
 
     def start(self):
-        self.reporter.report_message("Hello World")
+        self.reporter.report_message("!!!! WELCOME TO THE JUNGLE !!!!!")
         self.initialize_gamestate(self.state)
         reporter.report_game_state(state)
 
         while not self.state.is_finished:
-            player_action = self.input_processor.get_user_input("Chose Action [Draw, Attack]: ")
-            self.execute_player_action(player_action, state)
-            self.check_game_finished(state)
+            player_action = self.input_processor.get_user_input("Choose Action [Draw, Attack]: ")
+            self.execute_player_action(player_action, self.state)
+            self.reporter.report_action(self.state.player, self.state.bot, player_action)
+            self.check_game_finished(self.state)
+            reporter.report_game_state(self.state)
 
             bot_action = self.draw_bot_action()
-            self.execute_bot_action(bot_action, state)
-            self.check_game_finished(state)
 
-            reporter.report_game_state(state)
+            # don't switch these 2 lines. 
+            self.reporter.report_action(self.state.bot, self.state.player, player_action)
+            self.execute_bot_action(bot_action, self.state)
+
+            self.check_game_finished(self.state)
+            reporter.report_game_state(self.state)
 
         reporter.report_message("Game finished")
 
     def initialize_gamestate(self, state):
-        state.player, state.bot = Clippy(), Clippy()
+        state.player, state.bot = Clippy("Gormsen"), Clippy("Bot")
         lootbox_player, lootbox_bot = Lootbox(), Lootbox()
         state.player.equip_weapon(lootbox_player.draw_random_weapon())
         state.bot.equip_weapon(lootbox_bot.draw_random_weapon())
@@ -72,21 +77,3 @@ if __name__ == '__main__':
 
     game = Game(reporter, state, processor)
     game.start()
-
-    """
-    == Ablauf == 
-    start_game()
-    while nobody won:
-        report_gamestate()
-        play_round()
-            get_player_action()
-            execute_player_action()
-            update_gamestate()           
-
-    == Klassen ==
-    * InputProcessor -- prozessiert Spielerinputs
-    * Game -- ???
-    * GameState -- speichert den aktuellen Spielzustand
-    * Player -- ein Clippy
-    * Reporter -- GameState veröffentlichen (e.g., in Konsole printen)
-    """

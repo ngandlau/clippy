@@ -1,7 +1,10 @@
 from __future__ import annotations
+from dataclasses import dataclass
 from main.src.weapon import Weapon
 
-class Clippy():
+@dataclass
+class Clippy:
+    name: str
     life: float = 10
     weapon: Weapon = None
 
