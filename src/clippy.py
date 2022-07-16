@@ -1,11 +1,11 @@
 import math
 
-def add(a, b):
-    return a + b
+class Clippy():
+    def greet(self):
+        return "Hello Nils, I'm Clippy!"
 
-class MyClass:
-    def __init__(self):
-        None
+    def farewell(self):
+        return "Goodbye, old friend!"
 
 if __name__ == '__main__':
     print('hello world!')
