@@ -3,10 +3,11 @@ import src.weapon as weapon
 def test_weapons_are_drawn_randomly():
     n_samples = 1000
     samples = [weapon.Weapons.get_random_weapon().name for i in range(n_samples)]
-    soll_probs = {
-        'sword': 0.5,
-        'bazooka': 0.5
-    }
+
+    unique_weapons = weapon.Weapons.all_weapons
+    overall_prob = sum([weapon.get_rarity() for weapon in unique_weapons])
+    soll_probs = {weapon.get_name(): weapon.get_rarity() / overall_prob for weapon in unique_weapons}
+
     assert fuzzy_check(samples, soll_probs, threshold=0.05) is True
     
 
