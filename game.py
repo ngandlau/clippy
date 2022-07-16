@@ -1,3 +1,4 @@
+import random
 from dataclasses import dataclass
 
 from main.src.action import Action
@@ -18,11 +19,18 @@ class Game:
         self.reporter.report_message("Hello World")
         self.initialize_gamestate(self.state)
         reporter.report_game_state(state)
+
         while not self.state.is_finished:
-            action: Action = self.input_processor.get_user_input("Chose Action [Draw, Attack]: ")
-            self.execute_actions(action, state)
+            player_action = self.input_processor.get_user_input("Chose Action [Draw, Attack]: ")
+            self.execute_player_action(player_action, state)
+            self.check_game_finished(state)
+
+            bot_action = self.draw_bot_action()
+            self.execute_bot_action(bot_action, state)
+            self.check_game_finished(state)
+
             reporter.report_game_state(state)
-        reporter.report_game_state(state)
+
         reporter.report_message("Game finished")
 
     def initialize_gamestate(self, state):
@@ -31,14 +39,30 @@ class Game:
         state.player.equip_weapon(lootbox_player.draw_random_weapon())
         state.bot.equip_weapon(lootbox_bot.draw_random_weapon())
 
-    def execute_actions(self, action, state):
-        if Action.ATTACK == action:
+    def execute_player_action(self, player_action, state):
+        if Action.ATTACK == player_action:
             state.player.attack(state.bot)
-        elif Action.DRAW == action:
-            pass
+        elif Action.DRAW == player_action:
+            lootbox = Lootbox()
+            state.player.equip_weapon(lootbox.draw_random_weapon())
         else:
             pass
 
+    def check_game_finished(self, state):
+        if state.player.life <= 0 or state.bot.life <= 0:
+            state.is_finished = True
+
+    def draw_bot_action(self):
+        return random.choice([action for action in Action])
+
+    def execute_bot_action(self, bot_action, state):
+        if Action.ATTACK == bot_action:
+            state.bot.attack(state.player)
+        elif Action.DRAW == bot_action:
+            lootbox = Lootbox()
+            state.bot.equip_weapon(lootbox.draw_random_weapon())
+        else:
+            pass
 
 
 if __name__ == '__main__':

@@ -9,9 +9,8 @@ class Reporter:
 class TerminalReporter(Reporter):
     def report_game_state(self, state):
         txt = f"""
-        Lifepoints
-            Player: {state.player.life}
-            Comptr: {state.bot.life}
+        Player - Life: {state.player.life} | Weapon: {state.player.weapon.get_name()}
+        Comptr - Life: {state.bot.life} | Weapon: {state.bot.weapon.get_name()}
         """
         print(txt)
 
