@@ -1,15 +1,12 @@
 # Abstract Interface
 from dataclasses import dataclass
-from enum import IntEnum
-import random
+from enum import Enum, IntEnum
 
-
-class Rarity(IntEnum):
+class Rarity(Enum):
     RARE = 1
     COMMON = 2
-    ABUNDANCE = 3
-
-
+    ABUNDANT = 3
+    
 class Weapon:
     def get_base_attack(self):
         pass
@@ -20,12 +17,26 @@ class Weapon:
     def get_name(self):
         pass
 
+@dataclass
+class Fist(Weapon):
+    base_attack: int = 1
+    name: str = "fist"
+    rarity: int = Rarity.ABUNDANT.value
+
+    def get_base_attack(self):
+        return self.base_attack
+
+    def get_rarity(self):
+        return self.rarity
+
+    def get_name(self):
+        return self.name
 
 @dataclass
 class Sword(Weapon):
     base_attack: int = 2
     name: str = "sword"
-    rarity: int = Rarity.COMMON
+    rarity: int = Rarity.COMMON.value
 
     def get_base_attack(self):
         return self.base_attack
@@ -35,13 +46,12 @@ class Sword(Weapon):
 
     def get_name(self):
         return self.name
-
 
 @dataclass
 class Bazooka(Weapon):
-    base_attack: int = 99999999
+    base_attack: int = 99
     name: str = "bazooka"
-    rarity: Rarity = Rarity.RARE
+    rarity: int = Rarity.RARE.value
 
     def get_base_attack(self):
         return self.base_attack
@@ -53,10 +63,3 @@ class Bazooka(Weapon):
         return self.name
 
 
-class Weapons:
-    all_weapons = [Bazooka(), Sword()]
-
-    @staticmethod
-    def get_random_weapon():
-        all_weapons = [Bazooka(), Sword()]
-        return random.choice(all_weapons)

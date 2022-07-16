@@ -1,13 +1,9 @@
 from __future__ import annotations
-from src.weapon import Weapon, Weapons
+from src.weapon import Weapon
 
 class Clippy():
-    def __init__(self):
-        self.weapon = self.__draw_random_weapon()
-        self.life = 10
-
-    def __draw_random_weapon(self):
-        return Weapons.get_random_weapon()
+    life: float = 10
+    weapon: Weapon = None
 
     def equip_weapon(self, weapon: Weapon):
         self.weapon = weapon
@@ -25,4 +21,4 @@ class Clippy():
 
 
 if __name__ == '__main__':
-    print('hello world!')
+    pass

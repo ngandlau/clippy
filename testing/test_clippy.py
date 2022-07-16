@@ -1,5 +1,6 @@
 import src.clippy as clippy
 import src.weapon as weapon
+from src.lootbox import Lootbox
 
 def test_clippy_can_greet():
     clpy = clippy.Clippy()
@@ -9,20 +10,10 @@ def test_clippy_can_farewell():
     clpy = clippy.Clippy()
     assert clpy.farewell() == "Goodbye, old friend!"
 
-def test_clippy_can_attack_with_sword():
-    gormsen = clippy.Clippy()
-    gandlau = clippy.Clippy()
-    sword = weapon.Sword()
-    gormsen.equip_weapon(weapon=sword)
+def test_clippy_can_attack():
+    gormsen, gandlau = clippy.Clippy(), clippy.Clippy()
+    lootbox = Lootbox()
+    gormsen.equip_weapon(lootbox.draw_random_weapon())
     gandlau_life_before = gandlau.life
     gormsen.attack(gandlau)
     assert gandlau.life < gandlau_life_before
-    assert gandlau.life == gandlau_life_before - 2
-
-def test_clippy_can_attack_with_bazooka():
-    gormsen = clippy.Clippy()
-    gandlau = clippy.Clippy()
-    bazooka = weapon.Bazooka()
-    gormsen.equip_weapon(weapon=bazooka)
-    gormsen.attack(gandlau)
-    assert gandlau.life == 0
