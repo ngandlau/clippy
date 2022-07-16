@@ -1,7 +1,5 @@
 from dataclasses import dataclass
-
 from src.clippy import Clippy
-
 
 @dataclass
 class Game:
@@ -11,8 +9,8 @@ class Game:
 
     def start(self):
         self.reporter.report_message("Hello World")
-        self.initialize_gamestate(state)
-        while not self.state.is_finished():
+        self.initialize_gamestate(self.state)
+        while not self.state.is_finished:
             action = self.input_processor.get_user_input()
             self.execute_actions(action, state)
             reporter.report_game_state(state)
@@ -25,13 +23,6 @@ class Game:
     def initialize_gamestate(self, state):
         state.player = Clippy()
         state.bot = Clippy()
-
-class Reporter:
-    def report_game_state(self, state):
-        pass
-
-    def report_message(self, param):
-        pass
 
 
 @dataclass
