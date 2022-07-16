@@ -1,6 +1,7 @@
 # Abstract Interface
 from dataclasses import dataclass
-
+from enum import Enum
+import math
 
 class Weapon:
     def get_base_attack(self):
@@ -21,3 +22,13 @@ class Bazooka(Weapon):
 
     def get_base_attack(self):
         return self.base_attack
+
+
+@dataclass()
+class Weapons:
+    all_weapons = [Bazooka, Sword]
+
+    @staticmethod
+    def get_random_weapon(self):
+        Weapon = math.random.choice(self.all_weapons)
+        return Weapon()

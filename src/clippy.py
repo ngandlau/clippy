@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.weapon import Weapon
+from src.weapon import Weapon, Weapons
 
 class Clippy():
     def __init__(self):
@@ -7,7 +7,7 @@ class Clippy():
         self.life = 10
 
     def __draw_random_weapon(self):
-
+        return Weapons.get_random_weapon()
 
     def equip_weapon(self, weapon: Weapon):
         self.weapon = weapon
