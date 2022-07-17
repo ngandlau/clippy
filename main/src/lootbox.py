@@ -13,20 +13,13 @@ class Lootbox:
         self.occurence_probs = self.__calculate_occurrence_probabilities()
 
     def __calculate_occurrence_probabilities(self) -> Dict[str, float]:
-        """self-explanatory"""
         rarities = [w.get_rarity() for w in self.weapons_in_lootbox]
         occurence_probs = {}
         for w in self.weapons_in_lootbox:
-            occurence_prob = w.get_rarity() / sum(rarities)
-            occurence_probs[w.get_name()] = occurence_prob
+            occurence_probs[w.get_name()] = w.get_rarity() / sum(rarities)
         return occurence_probs
 
     def draw_random_weapon(self) -> Weapon:
-        weapons, probs = [], []
-        for i, weapon_name in enumerate(self.weapon_names):
-            weapon_object = self.weapons_in_lootbox[i]
-            weapon_prob = self.occurence_probs[weapon_name]
-            weapons.append(weapon_object)
-            probs.append(weapon_prob)
-        drawn_weapon = random.choices(weapons, weights=probs)[0]
-        return drawn_weapon
+        probs = [w.get_name() for w in self.weapons_in_lootbox]
+        weapon = random.choices(self.weapons_in_lootbox, weights=probs)[0]
+        return weapon
