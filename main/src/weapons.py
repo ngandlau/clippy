@@ -1,12 +1,8 @@
 # Abstract Interface
 from dataclasses import dataclass
-from enum import Enum, IntEnum
-
-class Rarity(Enum):
-    RARE = 1
-    COMMON = 2
-    ABUNDANT = 3
+from main.src.rarity import Rarity
     
+
 class Weapon:
     def get_base_attack(self):
         pass
