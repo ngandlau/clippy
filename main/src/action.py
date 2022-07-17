@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import Enum, auto
 
 
 class Action(Enum):
-    DRAW = 0
-    ATTACK = 1
-    INVALID = 2
+    DRAW = auto()
+    ATTACK = auto()
+    INVALID = auto()
