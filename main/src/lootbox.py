@@ -1,6 +1,6 @@
 import random
 from typing import Dict, List
-from main.src.weapon import Bazooka, Fist, Sword, Weapon
+from main.src.weapons import Bazooka, Fist, Sword, Weapon
 
 class Lootbox:
     weapons_in_lootbox: List[Weapon] = None
