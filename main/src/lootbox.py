@@ -3,11 +3,12 @@ from typing import Dict, List
 from main.src.weapon import Bazooka, Fist, Sword, Weapon
 
 class Lootbox:
-    weapons_in_lootbox: List[Weapon] = [Fist(), Sword(), Bazooka()]
+    weapons_in_lootbox: List[Weapon] = None
     weapon_names: List[str] = None
     occurence_probs: Dict[str, float] = None
 
     def __init__(self):
+        self.weapons_in_lootbox = [Fist(), Sword(), Bazooka()]
         self.weapon_names = [w.get_name() for w in self.weapons_in_lootbox]
         self.occurence_probs = self.__calculate_occurrence_probabilities()
 
