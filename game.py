@@ -18,7 +18,7 @@ class Game:
     def start(self):
         self.reporter.report_message("!!!! WELCOME TO THE JUNGLE !!!!!")
         self.initialize_gamestate(self.state)
-        reporter.report_game_state(state)
+        self.reporter.report_game_state(self.state)
 
         while not self.state.is_finished:
             player_action = self.input_processor.get_user_input("Choose Action [Draw, Attack]: ")
@@ -39,7 +39,7 @@ class Game:
         reporter.report_message("Game finished")
 
     def initialize_gamestate(self, state):
-        state.player, state.bot = Clippy("Gormsen"), Clippy("Bot")
+        state.player, state.bot = Clippy("Player"), Clippy("Bot")
         lootbox_player, lootbox_bot = Lootbox(), Lootbox()
         state.player.equip_weapon(lootbox_player.draw_random_weapon())
         state.bot.equip_weapon(lootbox_bot.draw_random_weapon())
@@ -48,8 +48,7 @@ class Game:
         if Action.ATTACK == player_action:
             state.player.attack(state.bot)
         elif Action.DRAW == player_action:
-            lootbox = Lootbox()
-            state.player.equip_weapon(lootbox.draw_random_weapon())
+            state.player.equip_weapon(Lootbox().draw_random_weapon())
         else:
             pass
 
@@ -58,14 +57,13 @@ class Game:
             state.is_finished = True
 
     def draw_bot_action(self):
-        return random.choice([action for action in Action])
+        return random.choice(list(Action))
 
     def execute_bot_action(self, bot_action, state):
-        if Action.ATTACK == bot_action:
+        if bot_action == Action.ATTACK:
             state.bot.attack(state.player)
-        elif Action.DRAW == bot_action:
-            lootbox = Lootbox()
-            state.bot.equip_weapon(lootbox.draw_random_weapon())
+        elif bot_action == Action.DRAW:
+            state.bot.equip_weapon(Lootbox().draw_random_weapon())
         else:
             pass
 
