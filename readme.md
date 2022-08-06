@@ -24,5 +24,8 @@ Deactivate the virtual environment:
 $ deactivate
 ```
 
+## Set Pythonpath
 
-
+```console
+$ export PYTHONPATH=/path/to/clippy
+```

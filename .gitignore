@@ -7,8 +7,6 @@ ENV/
 env.bak/
 venv.bak/n
 
-.idea
-
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -36,3 +34,6 @@ __pycache__/
 *.code-workspace
 # Local History for Visual Studio Code
 .history/
+
+
+.idea/

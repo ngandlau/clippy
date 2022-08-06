@@ -21,17 +21,17 @@ class Game:
         self.reporter.report_game_state(self.state)
 
         while not self.state.is_finished:
-            player_action = self.input_processor.get_user_input("Choose Action [Draw, Attack]: ")
+            player_action = self.input_processor.get_user_input("Choose Player1 Action [Draw, Attack]: ")
             self.execute_player_action(player_action, self.state)
             self.reporter.report_action(self.state.player, self.state.bot, player_action)
             self.check_game_finished(self.state)
             reporter.report_game_state(self.state)
 
-            bot_action = self.draw_bot_action()
+            player2_action = self.input_processor.get_user_input("Choose Player2 Action [Draw, Attack]: ")
 
             # don't switch these 2 lines. 
             self.reporter.report_action(self.state.bot, self.state.player, player_action)
-            self.execute_bot_action(bot_action, self.state)
+            self.execute_player_action(player2_action, self.state)
 
             self.check_game_finished(self.state)
             reporter.report_game_state(self.state)
@@ -43,6 +43,9 @@ class Game:
         lootbox_player, lootbox_bot = Lootbox(), Lootbox()
         state.player.equip_weapon(lootbox_player.draw_random_weapon())
         state.bot.equip_weapon(lootbox_bot.draw_random_weapon())
+
+    def get_opposing_player(self, current_player, state):
+        pass
 
     def execute_player_action(self, player_action, state):
         if Action.ATTACK == player_action:

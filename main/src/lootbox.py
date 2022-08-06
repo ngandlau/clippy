@@ -1,6 +1,8 @@
 import random
 from typing import Dict, List
-from main.src.weapons import Bazooka, Fist, Sword, Weapon
+
+from main.src.weapons import Fist, Sword, Bazooka, Weapon
+
 
 class Lootbox:
     weapons_in_lootbox: List[Weapon] = None
@@ -20,6 +22,6 @@ class Lootbox:
         return occurence_probs
 
     def draw_random_weapon(self) -> Weapon:
-        probs = [w.get_name() for w in self.weapons_in_lootbox]
+        probs = [w.get_rarity() for w in self.weapons_in_lootbox]
         weapon = random.choices(self.weapons_in_lootbox, weights=probs)[0]
         return weapon
